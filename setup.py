@@ -12,6 +12,10 @@ def reqs(*f):
 
 install_requires = reqs('requirements.txt')
 
+test_requires = [
+    'py.test',
+]
+
 setup(
     name='frules',
     version=version,
@@ -35,4 +39,5 @@ setup(
     # it can find the data files under Hg version control.
     setup_requires=['setuptools_hg'],
     install_requires=install_requires,
+    tests_require=test_requires,
 )
