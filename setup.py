@@ -3,8 +3,10 @@ from setuptools import setup, find_packages
 from frules import __version__ as version
 import os
 
+
 def strip_comments(l):
     return l.split('#', 1)[0].strip()
+
 
 def reqs(*f):
     return list(filter(None, [strip_comments(l) for l in open(
@@ -35,9 +37,6 @@ setup(
     # svn and CVS by default
     include_package_data=True,
     zip_safe=False,
-    # Tells setuptools to download setuptools_hg before running setup.py so
-    # it can find the data files under Hg version control.
-    setup_requires=['setuptools_hg'],
     install_requires=install_requires,
     tests_require=test_requires,
 )
