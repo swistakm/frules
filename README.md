@@ -1,2 +1,4 @@
-frules
-======
+frules - simple functional fuzzy rules
+===========================
+
+
