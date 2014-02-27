@@ -37,6 +37,7 @@ setup(
     # svn and CVS by default
     include_package_data=True,
     zip_safe=False,
+    setup_requires=['setuptools_git'],
     install_requires=install_requires,
     tests_require=test_requires,
 )
