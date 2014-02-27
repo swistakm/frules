@@ -3,6 +3,7 @@ from functools import partial
 import primitives
 from norms import and_norm, or_norm, neg_norm
 
+
 class Variable(object):
     _children = None
     _op = None
@@ -47,6 +48,7 @@ class Variable(object):
         else:
             return "undefined"
 
+
 def trapezoid(a, b, c, d):
     """ Return trapezoid function:
 
@@ -56,6 +58,7 @@ def trapezoid(a, b, c, d):
          a  b   c  d
     """
     return partial(primitives.trap, a, b, c, d)
+
 
 def rtrapezoid(a, b):
     """ Return trapezoid function with right side in infinity:
@@ -68,6 +71,7 @@ def rtrapezoid(a, b):
     """
     return partial(primitives.rtrap, a, b)
 
+
 def ltrapezoid(a, b):
     """ Return trapezoid function with left side in infinity:
 
@@ -77,6 +81,7 @@ def ltrapezoid(a, b):
                 a  b
     """
     return partial(primitives.ltrap, a, b)
+
 
 def triangle(a, b):
     """ Return triangle function:
@@ -88,6 +93,7 @@ def triangle(a, b):
     """
     return partial(primitives.tri, a, b)
 
+
 def rectangle(a, b):
     """ Return classic logic rect function:
 
@@ -98,6 +104,7 @@ def rectangle(a, b):
     """
     return lambda x, a=a, b=b: 1. if a <= x <= b else 0.
 
+
 def step(a):
     """ Return logic step function
         ^   .........
@@ -106,6 +113,7 @@ def step(a):
             a
     """
     return lambda x: 1. if x > a else 0.
+
 
 def nstep(a):
     """ Return negative logic step function

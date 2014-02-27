@@ -2,6 +2,7 @@
 from functools import partial
 import math
 
+
 def hedge(p, mvalue):
     """Generic definition of a function that alters a given membership function
     by intensifying it in the case of *very* of diluting it in the case of

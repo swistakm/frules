@@ -3,6 +3,7 @@ from errors import InputKeyMissing, AmbiguousRuleDefinitionError
 from variables import Variable
 from norms import and_norm, or_norm, neg_norm
 
+
 class Rule(object):
     _children = None
     _op = None
@@ -31,7 +32,6 @@ class Rule(object):
             rule = object.__new__(cls)
             rule._pre_init(input_bind, variable)
             return rule
-
 
     def _pre_init(self, input_bind=None, variable=None, ):
         """Bind input key and variable

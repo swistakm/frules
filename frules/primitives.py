@@ -11,7 +11,7 @@ def range(start, stop, step=1.):
     :returns: List of values from `start` to `stop` incremented by `size`.
     :rtype: [float]
     """
-    start, stop, step =  map(float, (start, stop, step))
+    start, stop, step = map(float, (start, stop, step))
 
     result = [start]
     current = start
@@ -54,13 +54,16 @@ def trap(a, b, c, d, x):
     second = (d - x) / (d - c)
     return max(min(first, 1., second), 0.)
 
+
 def ltrap(a, b, x):
     a, b, x =  map(float, (a, b, x))
     return max(min((b - x) / (b - a), 1.), 0.)
 
+
 def rtrap(a, b, x):
     a, b, x =  map(float, (a, b, x))
     return max(min((x - a) / (b - a), 1.), 0.)
+
 
 def rect(a, b, x):
     a, b, x =  map(float, (a, b, x))

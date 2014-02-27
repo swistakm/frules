@@ -4,6 +4,7 @@ import rules
 import errors
 import pytest
 
+
 class TestVariablesHelpers:
     def test_rtrapezoid(self):
         rt = variables.rtrapezoid(10, 20)
@@ -69,6 +70,7 @@ class TestVariablesHelpers:
         assert rt(5) == 0.
         assert rt(6) == 0.
 
+
 class TestVariable:
     def test_simple_init(self):
         mu_fun = variables.triangle(10,30)
@@ -115,6 +117,7 @@ class TestVariable:
         assert var.mu(25) == 0.5
         assert var.mu(30) == 1.
         assert var.mu(40) == 1.
+
 
 class TestRule:
     def test_simple_init(self):
