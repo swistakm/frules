@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from errors import InputKeyMissing, AmbiguousRuleDefinitionError
-from variables import Variable
+from expressions import Expression
 from norms import and_norm, or_norm, neg_norm
 
 
@@ -14,7 +14,7 @@ class Rule(object):
         If rule definition is provided in kwargs-style, each rule is instantiated as reparete
         Rule object and they are joined with & operator.
         """
-        filtered_keys = filter(lambda key: isinstance(kwargs[key], Variable), kwargs)
+        filtered_keys = filter(lambda key: isinstance(kwargs[key], Expression), kwargs)
         rules_definitions = map(lambda key: (key, kwargs[key]), filtered_keys)
 
         if (input_bind or variable) and rules_definitions:

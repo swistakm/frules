@@ -4,7 +4,7 @@ import primitives
 from norms import and_norm, or_norm, neg_norm
 
 
-class Variable(object):
+class Expression(object):
     _children = None
     _op = None
 
@@ -19,21 +19,21 @@ class Variable(object):
 
     @staticmethod
     def apply_norm(children, norm, op):
-        """Apply provided norm to new Variable object"""
+        """Apply provided norm to new Expression object"""
         mu_list = [child.mu for child in children]
-        var = Variable(lambda val, children=mu_list: norm(children, val))
+        var = Expression(lambda val, children=mu_list: norm(children, val))
         var._children = children
         var._op = op
         return var
 
     def __and__(self, other):
-        return Variable.apply_norm([self, other], and_norm, "&")
+        return Expression.apply_norm([self, other], and_norm, "&")
 
     def __or__(self, other):
-        return Variable.apply_norm([self, other], or_norm, "|")
+        return Expression.apply_norm([self, other], or_norm, "|")
 
     def __neg__(self):
-        return Variable.apply_norm([self], neg_norm, "!")
+        return Expression.apply_norm([self], neg_norm, "!")
 
     def __str__(self):
         if self._children:
