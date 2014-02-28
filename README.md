@@ -93,41 +93,43 @@ from frules.expressions import Expression as E
 from frules.rules import Rule as R
 from frules.expressions import ltrapezoid, trapezoid, rtrapezoid
 
-# age expressions
-too_young = E(ltrapezoid(16, 18), "too_young")
-young = E(trapezoid(16, 18, 25, 30), "young")
-old = - (too_young && young)
+# car age expressions
+old = E(ltrapezoid(2001, 2008), "old")
+new = E(rtrapezoid(2013, 2014), "new")
+not_so_old = - (old & new)
 
-# height expressions
-tall = E(rtrapezoid(165, 180), "tall")
-short = E(ltrapezoid(165, 180), "short")
+# power expressions
+strong = E(rtrapezoid(50, 100), "strong")
+weak = E(ltrapezoid(50, 100), "weak")
+
+# price expression
+expensive = E(rtrapezoid(25000, 30000), "expensive")
+cheap = - expensive
 
 # yes expression
 yes = E(lambda yes: float(yes), "yes") # converts bool to float
 
 
 # rules
-is_hot = R(age=young, height=tall)  # equvalent to R(age=young) & R(height=tall)
-is_chick = - R(has_penis=yes)
-should_date = is_hot & is_chick
+is_attractive = R(production_year=not_so_old) & R(horsepower=strong)
+should_buy = is_attractive & R(price=cheap)
 ```
 
-Having set such rules we can do some reasoning:
+Having such set of rules we can do some reasoning:
 
 ```
->>> shoud_date
-((age = young & height = tall) & !has_penis = yes)
->>> should_date.eval(age=17, height=170, has_penis=False) > should_date.eval(age=20, height=170, has_penis=True)
-True
+>>> should_buy
+(((age = !(old & new) & horsepower = strong) & !None = None) & cost = !expensive)
+>>> should_buy.eval(horsepower=70, production_year=2012, price=15000)
+0.4
 >>>
 >>> candidates = {
-...     "c1": {"age": 18, "height": 178},
-...     "c2": {"age": 20, "height": 175},
-...     "c3": {"age": 50, "height": 180},
-...     "c4": {"age": 25, "height": 161},
+...     "car1": {"horsepower": 70, "production_year": 2012, "price": 15000},
+...     "car2": {"horsepower": 150, "production_year": 2010, "price": 30000},
+...     "car3": {"horsepower": 90, "production_year": 2014, "price": 10000},
+...     "car4": {"horsepower": 85, "production_year": 2009, "price": 35000},
 ... }
-...
 >>> max(candidates.iteritems(), key=lambda (key, inputs): is_hot.eval(**inputs))
-('c1', {'age': 18, 'height': 178})
+('car3', {'horsepower': 90, 'price': 10000, 'production_year': 2014})
 ```
 
