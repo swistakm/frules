@@ -32,6 +32,8 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
+
     ],
     # Make setuptools include all data files under version control,
     # svn and CVS by default
