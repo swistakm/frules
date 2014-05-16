@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import expressions
-import rules
-import errors
+from frules import expressions
+from frules import rules
+from frules import errors
 import pytest
 
 
@@ -88,7 +88,7 @@ class TestVariable:
         mu_fun = expressions.triangle(10,30)
         var = expressions.Expression(mu_fun)
 
-        assert isinstance(str(var), basestring)
+        assert isinstance(str(var), str)
 
     def test_variable_and(self):
         var = expressions.Expression(expressions.triangle(10,30)) & expressions.Expression(expressions.triangle(20,40))
@@ -185,7 +185,7 @@ class TestRule:
 
     def test___str__(self):
         rule = rules.Rule()
-        assert isinstance(str(rule), basestring)
+        assert isinstance(str(rule), str)
 
     def test_eval_exception_when_input_key_missing(self):
         V = expressions.Expression

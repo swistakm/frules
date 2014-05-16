@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from functools import partial
-import primitives
-from norms import and_norm, or_norm, neg_norm
+
+from frules import primitives
+from frules.norms import and_norm, or_norm, neg_norm
 
 
 class Expression(object):

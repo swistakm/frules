@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-from errors import InputKeyMissing, AmbiguousRuleDefinitionError
-from expressions import Expression
-from norms import and_norm, or_norm, neg_norm
+from functools import reduce
+
+from frules.errors import InputKeyMissing, AmbiguousRuleDefinitionError
+from frules.expressions import Expression
+from frules.norms import and_norm, or_norm, neg_norm
 
 
 class Rule(object):
@@ -11,8 +13,9 @@ class Rule(object):
     def __new__(cls, input_bind=None, variable=None, **kwargs):
         """Creates new Rule instance
 
-        If rule definition is provided in kwargs-style, each rule is instantiated as reparete
-        Rule object and they are joined with & operator.
+        If rule definition is provided in kwargs-style, each rule is
+        instantiated as separate Rule object and they are
+        joined with & operator.
         """
         filtered_keys = filter(lambda key: isinstance(kwargs[key], Expression), kwargs)
         rules_definitions = map(lambda key: (key, kwargs[key]), filtered_keys)
