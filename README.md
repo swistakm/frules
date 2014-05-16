@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cloudyourcar/frules.svg?branch=master)](https://travis-ci.org/cloudyourcar/frules)
+
 # frules - simple functional fuzzy rules
 
 
