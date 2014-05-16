@@ -18,11 +18,12 @@ class Rule(object):
         joined with & operator.
         """
         filtered_keys = filter(lambda key: isinstance(kwargs[key], Expression), kwargs)
-        rules_definitions = map(lambda key: (key, kwargs[key]), filtered_keys)
+        rules_definitions = [(key, kwargs[key]) for key in filtered_keys]
 
         if (input_bind or variable) and rules_definitions:
             raise AmbiguousRuleDefinitionError("Can't define Rule with both args-style and kwargs-style input bindings")
 
+        print(rules_definitions)
         if rules_definitions:
             # kwargs-style definition
             # instantiate each Rule and join them with "and" operator
