@@ -1,27 +1,35 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-from frules import __version__ as version
 import os
 
-
-def strip_comments(l):
-    return l.split('#', 1)[0].strip()
+from frules import __version__ as version
 
 
-def reqs(*f):
-    return list(filter(None, [strip_comments(l) for l in open(
-        os.path.join(os.getcwd(), *f)).readlines()]))
+try:
+    from pypandoc import convert
 
-install_requires = reqs('requirements.txt')
+    def read_md(f):
+        return convert(f, 'rst')
 
-test_requires = [
-    'py.test',
-]
+except ImportError:
+    convert = None
+    print(
+        "warning: pypandoc module not found, could not convert Markdown to RST"
+    )
+
+    def read_md(f):
+        return open(f, 'r').read()  # noqa
+
+INSTALL_REQUIRES = []
+TEST_REQUIRES = ['py.test']
+README = os.path.join(os.path.dirname(__file__), 'README.md')
 
 setup(
     name='frules',
     version=version,
     description='simple functional fuzzy rules implementation',
+    long_description=read_md(README),
+
     author='Michał Jaworski',
     author_email='swistakm@gmail.com',
     url='https://github.com/swistakm/frules',
@@ -33,13 +41,12 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-
     ],
     # Make setuptools include all data files under version control,
     # svn and CVS by default
     include_package_data=True,
     zip_safe=False,
     setup_requires=['setuptools_git'],
-    install_requires=install_requires,
-    tests_require=test_requires,
+    install_requires=INSTALL_REQUIRES,
+    tests_require=TEST_REQUIRES,
 )

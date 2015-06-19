@@ -17,11 +17,16 @@ class Rule(object):
         instantiated as separate Rule object and they are
         joined with & operator.
         """
-        filtered_keys = filter(lambda key: isinstance(kwargs[key], Expression), kwargs)
+        filtered_keys = filter(
+            lambda key: isinstance(kwargs[key], Expression), kwargs
+        )
         rules_definitions = [(key, kwargs[key]) for key in filtered_keys]
 
         if (input_bind or variable) and rules_definitions:
-            raise AmbiguousRuleDefinitionError("Can't define Rule with both args-style and kwargs-style input bindings")
+            raise AmbiguousRuleDefinitionError(
+                "Can't define Rule with both args-style and"
+                " kwargs-style input bindings"
+            )
 
         print(rules_definitions)
         if rules_definitions:
@@ -37,7 +42,7 @@ class Rule(object):
             rule._pre_init(input_bind, variable)
             return rule
 
-    def _pre_init(self, input_bind=None, variable=None, ):
+    def _pre_init(self, input_bind=None, variable=None):
         """Bind input key and variable
         """
         self._input_bind = input_bind
@@ -69,7 +74,7 @@ class Rule(object):
             except KeyError:
                 raise InputKeyMissing(self._input_bind)
         elif self._children:
-            return self._norm([rule.eval for rule in self._children], **inputs )
+            return self._norm([rule.eval for rule in self._children], **inputs)
 
     def __str__(self):
         """Return string representing fuzzy logic rule """
@@ -79,7 +84,7 @@ class Rule(object):
                 rep = "(%s)" % op.join([str(rule) for rule in self._children])
             else:
                 rep = self._op + str(self._children[0])
-            return  rep
+            return rep
         else:
             return "%s = %s" % (self._input_bind, self._variable)
 

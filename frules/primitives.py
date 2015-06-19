@@ -22,7 +22,7 @@ def range(start, stop, step=1.):
 
 
 def up(a, b, x):
-    a, b, x =  map(float, (a, b, x))
+    a, b, x = map(float, (a, b, x))
 
     a = float(a)
     b = float(b)
@@ -39,7 +39,7 @@ def down(a, b, x):
 
 
 def tri(a, b, x):
-    a, b, x =  map(float, (a, b, x))
+    a, b, x = map(float, (a, b, x))
 
     m = (a + b) / 2.
     first = (x - a) / (m - a)
@@ -56,15 +56,15 @@ def trap(a, b, c, d, x):
 
 
 def ltrap(a, b, x):
-    a, b, x =  map(float, (a, b, x))
+    a, b, x = map(float, (a, b, x))
     return max(min((b - x) / (b - a), 1.), 0.)
 
 
 def rtrap(a, b, x):
-    a, b, x =  map(float, (a, b, x))
+    a, b, x = map(float, (a, b, x))
     return max(min((x - a) / (b - a), 1.), 0.)
 
 
 def rect(a, b, x):
-    a, b, x =  map(float, (a, b, x))
+    a, b, x = map(float, (a, b, x))
     return 1. if a < x < b else 0

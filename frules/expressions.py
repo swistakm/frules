@@ -43,7 +43,7 @@ class Expression(object):
                 rep = "(%s)" % op.join([str(rule) for rule in self._children])
             else:
                 rep = self._op + str(self._children[0])
-            return  rep
+            return rep
         elif self._name:
             return self._name
         else:
