@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/cloudyourcar/frules.svg?branch=master)](https://travis-ci.org/cloudyourcar/frules)
+[![Build Status](https://travis-ci.org/swistakm/frules.svg?branch=master)](https://travis-ci.org/swistakm/frules)
+
 
 # frules - simple functional fuzzy rules
 
