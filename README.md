@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/swistakm/frules.svg?branch=master)](https://travis-ci.org/swistakm/frules)
-
+[![Coverage Status](https://coveralls.io/repos/swistakm/frules/badge.svg?branch=master)](https://coveralls.io/r/swistakm/frules?branch=master)
 
 # frules - simple functional fuzzy rules
 
