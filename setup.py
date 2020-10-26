@@ -5,20 +5,10 @@ import os
 from frules import __version__ as version
 
 
-try:
-    from pypandoc import convert
+def read_md(path):
+    with open(path, 'r') as f:
+        return f.read()
 
-    def read_md(f):
-        return convert(f, 'rst')
-
-except ImportError:
-    convert = None
-    print(
-        "warning: pypandoc module not found, could not convert Markdown to RST"
-    )
-
-    def read_md(f):
-        return open(f, 'r').read()  # noqa
 
 INSTALL_REQUIRES = []
 TEST_REQUIRES = ['py.test']
@@ -29,7 +19,7 @@ setup(
     version=version,
     description='simple functional fuzzy rules implementation',
     long_description=read_md(README),
-
+    long_description_content_type="text/markdown",
     author='Michał Jaworski',
     author_email='swistakm@gmail.com',
     url='https://github.com/swistakm/frules',

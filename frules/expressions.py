@@ -15,7 +15,7 @@ class Expression(object):
             self._name = name
 
     def mu(self, val):
-        if self is blank:
+        if self is _blank:
             raise ValueError("blank expressions can't be evaluated")
 
         if self._mu_func:
@@ -36,12 +36,12 @@ class Expression(object):
         return _blank
 
     def __and__(self, other):
-        if other is _blank:
+        if self is _blank or other is _blank:
             return other
         return Expression.apply_norm([self, other], and_norm, "&")
 
     def __or__(self, other):
-        if other is _blank:
+        if self is _blank or other is _blank:
             return other
         return Expression.apply_norm([self, other], or_norm, "|")
 
