@@ -28,7 +28,6 @@ class Rule(object):
                 " kwargs-style input bindings"
             )
 
-        print(rules_definitions)
         if rules_definitions:
             # kwargs-style definition
             # instantiate each Rule and join them with "and" operator

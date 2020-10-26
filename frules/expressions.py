@@ -15,6 +15,9 @@ class Expression(object):
             self._name = name
 
     def mu(self, val):
+        if self is blank:
+            raise ValueError("blank expressions can't be evaluated")
+
         if self._mu_func:
             return self._mu_func(val)
 
@@ -27,10 +30,19 @@ class Expression(object):
         var._op = op
         return var
 
+    @classmethod
+    def blank(cls):
+        """Sentinel value for usage in reduce() calls"""
+        return _blank
+
     def __and__(self, other):
+        if other is _blank:
+            return other
         return Expression.apply_norm([self, other], and_norm, "&")
 
     def __or__(self, other):
+        if other is _blank:
+            return other
         return Expression.apply_norm([self, other], or_norm, "|")
 
     def __neg__(self):
@@ -48,6 +60,9 @@ class Expression(object):
             return self._name
         else:
             return "undefined"
+
+
+_blank = Expression("blank")
 
 
 def trapezoid(a, b, c, d):
