@@ -127,12 +127,12 @@ Having such set of rules we can do some reasoning:
 0.4
 >>>
 >>> candidates = {
-...     "car1": {"horsepower": 70, "production_year": 2012, "price": 15000},
-...     "car2": {"horsepower": 150, "production_year": 2010, "price": 30000},
-...     "car3": {"horsepower": 90, "production_year": 2014, "price": 10000},
-...     "car4": {"horsepower": 85, "production_year": 2009, "price": 35000},
-... }
->>> max(candidates.iteritems(), key=lambda (key, inputs): is_hot.eval(**inputs))
+    "car1": {"horsepower": 70, "production_year": 2012, "price": 15000},
+    "car2": {"horsepower": 150, "production_year": 2010, "price": 30000},
+    "car3": {"horsepower": 90, "production_year": 2014, "price": 10000},
+    "car4": {"horsepower": 85, "production_year": 2009, "price": 35000}
+    }
+>>> max(candidates.iteritems(), key=lambda (key, inputs): should_buy.eval(**inputs))
 ('car3', {'horsepower': 90, 'price': 10000, 'production_year': 2014})
 ```
 
